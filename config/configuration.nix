@@ -108,6 +108,7 @@
       yubioath-flutter
       gparted
       vlc
+      gnomeExtensions.dock-from-dash
     ];
   };
 
