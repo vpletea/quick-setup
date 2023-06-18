@@ -109,6 +109,7 @@
       gparted
       vlc
       gnomeExtensions.dock-from-dash
+      gnome.gnome-terminal
     ];
   };
 
@@ -126,13 +127,13 @@
   environment.gnome.excludePackages = (with pkgs; [
     gnome-photos
     gnome-tour
-    gnome-text-editor 
+    gnome-text-editor
+    gnome-console 
     gnome.cheese
     gnome.gnome-music
     gnome.simple-scan
     gnome.seahorse
     gnome.gnome-maps
-    gnome.gnome-terminal
     gnome.gnome-contacts
     gnome.gnome-calendar
     gnome.gnome-clocks
