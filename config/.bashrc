@@ -19,7 +19,6 @@ alias ls='ls $LS_OPTIONS'
 alias ll='ls -alF'
 alias kc='k3d cluster create dev  -p 80:80@loadbalancer -p 443:443@loadbalancer --k3s-arg "--disable=traefik@server:0" --volume /etc/hosts:/etc/hosts'
 alias kd='k3d cluster delete dev'
-alias ku='wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash'
 
 #Set bash history settings
 HISTSIZE=10000
