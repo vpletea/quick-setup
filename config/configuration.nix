@@ -14,9 +14,11 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.timeout = 2;
   boot.plymouth.enable = true;
   boot.initrd.systemd.enable = true;
   boot.kernelParams = ["quiet"];
+  
 
   # Setup keyfile
   boot.initrd.secrets = {
@@ -189,5 +191,3 @@
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
   '';
- 
-}
