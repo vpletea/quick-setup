@@ -17,8 +17,11 @@ eval "$(dircolors -b)"
 #Set aliases
 alias ls='ls $LS_OPTIONS'
 alias ll='ls -alF'
-alias kc='k3d cluster create dev  -p 80:80@loadbalancer -p 443:443@loadbalancer --k3s-arg "--disable=traefik@server:0"'
+alias grep='grep -n --color'
+alias kc='k3d cluster create -p 80:80@loadbalancer -p 443:443@loadbalancer --k3s-arg "--disable=traefik@server:0"'
 alias kd='k3d cluster delete dev'
+alias nr='sudo nixos-rebuild switch'
+alias ne='sudo nano /etc/nixos/configuration.nix'
 
 #Set bash history settings
 HISTSIZE=10000
