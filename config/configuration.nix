@@ -10,12 +10,22 @@
       ./hardware-configuration.nix
     ];
 
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.plymouth.enable = true;
   boot.initrd.systemd.enable = true;
   boot.kernelParams = ["quiet"];
+
+  # Setup keyfile
+  boot.initrd.secrets = {
+    "/crypto_keyfile.bin" = null;
+  };
+
+  # Enable swap on luks
+  boot.initrd.luks.devices."luks-5fa26d8a-9213-4933-be9b-804ccc686401".device = "/dev/disk/by-uuid/5fa26d8a-9213-4933-be9b-804ccc686401";
+  boot.initrd.luks.devices."luks-5fa26d8a-9213-4933-be9b-804ccc686401".keyFile = "/crypto_keyfile.bin";
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -179,4 +189,5 @@
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
   '';
+ 
 }
