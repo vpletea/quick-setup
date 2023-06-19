@@ -106,7 +106,6 @@
       kubectl
       bitwarden
       yubioath-flutter
-      gparted
       vlc
       gnomeExtensions.dock-from-dash
       gnome.gnome-terminal
