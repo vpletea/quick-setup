@@ -25,8 +25,8 @@
   };
 
   # Enable swap on luks
-  boot.initrd.luks.devices."luks-5fa26d8a-9213-4933-be9b-804ccc686401".device = "/dev/disk/by-uuid/5fa26d8a-9213-4933-be9b-804ccc686401";
-  boot.initrd.luks.devices."luks-5fa26d8a-9213-4933-be9b-804ccc686401".keyFile = "/crypto_keyfile.bin";
+  boot.initrd.luks.devices."luks-fe377078-8328-48d9-a112-e24aac047f96".device = "/dev/disk/by-uuid/fe377078-8328-48d9-a112-e24aac047f96";
+  boot.initrd.luks.devices."luks-fe377078-8328-48d9-a112-e24aac047f96".keyFile = "/crypto_keyfile.bin";
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -175,6 +175,14 @@
   autosuggestions.extraConfig = {
   "ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE" = "20";
   };
+  promptInit = ''
+  # Make zsh autocomplete with up arrow
+  autoload -Uz history-search-end
+  zle -N history-beginning-search-backward-end history-search-end
+  zle -N history-beginning-search-forward-end history-search-end
+  bindkey "$terminfo[kcuu1]" history-beginning-search-backward-end
+  bindkey "$terminfo[kcud1]" history-beginning-search-forward-end
+  '';
   syntaxHighlighting.enable = true;
   histFile = "$HOME/.histfile";
   histSize = 10000;
@@ -183,6 +191,7 @@
     ll = "ls -alh";
     ls = "ls --color=auto --group-directories-first";
     grep = "grep -n --color";
+    nano = "nano -c";
     kc = "k3d cluster create -p 80:80@loadbalancer -p 443:443@loadbalancer";
     kd = "k3d cluster delete";
     nr = "sudo nixos-rebuild switch";
@@ -202,6 +211,7 @@
    };
   };
 
+ 
   # Set default shell to zsh
   users.defaultUserShell = pkgs.zsh;
 
@@ -229,3 +239,4 @@
     DefaultTimeoutStopSec=10s
   '';
 }
+
