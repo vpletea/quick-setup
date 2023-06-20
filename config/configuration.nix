@@ -104,22 +104,22 @@
     description = "Valentin";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
-      firefox
-      google-chrome
-      vscode
-      git
-      htop
-      kubernetes-helm
-      terraform
       ansible
+      bitwarden
       docker
+      firefox
+      git
+      gnome.gnome-terminal
+      gnomeExtensions.dock-from-dash
+      google-chrome
+      htop
       k3d
       kubectl
-      bitwarden
-      yubioath-flutter
+      kubernetes-helm
+      terraform
       vlc
-      gnomeExtensions.dock-from-dash
-      gnome.gnome-terminal
+      vscode
+      yubioath-flutter
     ];
   };
 
@@ -135,29 +135,29 @@
   ];
 
   environment.gnome.excludePackages = (with pkgs; [
-    gnome-photos
-    gnome-tour
-    gnome-text-editor
-    gnome-console 
-    gnome.cheese
-    gnome.gnome-music
-    gnome.simple-scan
-    gnome.seahorse
-    gnome.gnome-maps
-    gnome.gnome-contacts
-    gnome.gnome-calendar
-    gnome.gnome-clocks
-    gnome.gedit
-    gnome.epiphany
-    gnome.geary
-    gnome.evince
-    gnome.gnome-characters
-    gnome.totem
-    gnome.tali
-    gnome.iagno
-    gnome.hitori
-    gnome.atomix
-    gnome.yelp
+      gnome-console
+      gnome-photos
+      gnome-text-editor
+      gnome-tour
+      gnome.atomix
+      gnome.cheese
+      gnome.epiphany
+      gnome.evince
+      gnome.geary
+      gnome.gedit
+      gnome.gnome-calendar
+      gnome.gnome-characters
+      gnome.gnome-clocks
+      gnome.gnome-contacts
+      gnome.gnome-maps
+      gnome.gnome-music
+      gnome.hitori
+      gnome.iagno
+      gnome.seahorse
+      gnome.simple-scan
+      gnome.tali
+      gnome.totem
+      gnome.yelp
    ]);
 
   # Some programs need SUID wrappers, can be configured further or are
