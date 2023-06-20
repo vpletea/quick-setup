@@ -18,8 +18,7 @@
   boot.plymouth.enable = true;
   boot.initrd.systemd.enable = true;
   boot.kernelParams = ["quiet"];
-  
-
+    
   # Setup keyfile
   boot.initrd.secrets = {
     "/crypto_keyfile.bin" = null;
@@ -169,7 +168,45 @@
   #   enableSSHSupport = true;
   # };
 
+  ## ZSH Setup
+  programs.zsh = {
+  enable = true;
+  autosuggestions.enable = true;
+  autosuggestions.extraConfig = {
+  "ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE" = "20";
+  };
+  syntaxHighlighting.enable = true;
+  histFile = "$HOME/.histfile";
+  histSize = 10000;
+  enableBashCompletion = true;
+  shellAliases = {
+    ll = "ls -alh";
+    ls = "ls --color=auto --group-directories-first";
+    grep = "grep -n --color";
+    kc = "k3d cluster create -p 80:80@loadbalancer -p 443:443@loadbalancer";
+    kd = "k3d cluster delete";
+    nr = "sudo nixos-rebuild switch";
+    ne = "sudo nano /etc/nixos/configuration.nix";
+    };
+  };
+  # programs.zsh.completionInit = ["emacs"];
+  environment.pathsToLink = [ "/share/zsh" ];
+  
+  ## Starship prompt setup
+  programs.starship = {
+  enable = true;
+  settings = {
+     kubernetes = {
+     disabled = false;
+     };
+   };
+  };
+
+  # Set default shell to zsh
+  users.defaultUserShell = pkgs.zsh;
+
   # List services that you want to enable:
+  
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
