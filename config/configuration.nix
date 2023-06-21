@@ -56,6 +56,11 @@
     LC_TIME = "ro_RO.UTF-8";
   };
 
+  # Install nerdfonts
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+  ];
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.excludePackages = [pkgs.xterm];
@@ -68,7 +73,7 @@
     extraGSettingsOverrides = ''
       [org.gnome.shell]
       favorite-apps=['firefox.desktop', 'code.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop']
-      enabled-extensions=['dock-from-dash@fthx']
+      enabled-extensions=['dock-from-dash@fthx', 'pop-shell@system76.com']
     '';
     extraGSettingsOverridePackages = [
       pkgs.gnome.gnome-shell
@@ -131,6 +136,7 @@
     git
     gnome.gnome-terminal
     gnomeExtensions.dock-from-dash
+    gnomeExtensions.pop-shell
     google-chrome
     htop
     k3d
@@ -197,9 +203,6 @@
   loginShellInit = "
   #Set favorite apps in dock according to the config file
   dconf reset /org/gnome/shell/favorite-apps
-
-  #Set extensions according to the config file
-  dconf reset /org/gnome/shell/enabled-extensions 
   ";
   syntaxHighlighting.enable = true;
   histFile = "$HOME/.histfile";
