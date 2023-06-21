@@ -103,24 +103,6 @@
     isNormalUser = true;
     description = "Valentin";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-      ansible
-      bitwarden
-      docker
-      firefox
-      git
-      gnome.gnome-terminal
-      gnomeExtensions.dock-from-dash
-      google-chrome
-      htop
-      k3d
-      kubectl
-      kubernetes-helm
-      terraform
-      vlc
-      vscode
-      yubioath-flutter
-    ];
   };
 
   # Allow unfree packages
@@ -129,12 +111,28 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
+    ansible
+    bitwarden
+    docker
+    firefox
+    git
+    gnome.gnome-terminal
+    gnomeExtensions.dock-from-dash
+    google-chrome
+    htop
+    k3d
+    kubectl
+    kubernetes-helm
     plymouth
+    terraform
+    vim
+    vlc
+    vscode
+    wget
+    yubioath-flutter
   ];
 
-  environment.gnome.excludePackages = (with pkgs; [
+  environment.gnome.excludePackages = with pkgs; [
       gnome-console
       gnome-photos
       gnome-text-editor
@@ -158,7 +156,7 @@
       gnome.tali
       gnome.totem
       gnome.yelp
-   ]);
+   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -175,8 +173,8 @@
   autosuggestions.extraConfig = {
   "ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE" = "20";
   };
+  # Set zsh prompt for zsh autocomplete with up arrow
   promptInit = ''
-  # Make zsh autocomplete with up arrow
   autoload -Uz history-search-end
   zle -N history-beginning-search-backward-end history-search-end
   zle -N history-beginning-search-forward-end history-search-end
