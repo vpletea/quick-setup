@@ -62,6 +62,18 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+    
+  # Setting favorite apps in gnome
+  services.xserver.desktopManager.gnome = {
+    extraGSettingsOverrides = ''
+      [org.gnome.shell]
+      favorite-apps=['org.gnome.Terminal.desktop', 'firefox.desktop', 'code.desktop', 'org.gnome.Nautilus.desktop']
+    '';
+    extraGSettingsOverridePackages = [
+      pkgs.gnome.gnome-shell
+    ];    
+  };  
+  
 
   # Configure keymap in X11
   services.xserver = {
@@ -181,6 +193,10 @@
   bindkey "$terminfo[kcuu1]" history-beginning-search-backward-end
   bindkey "$terminfo[kcud1]" history-beginning-search-forward-end
   '';
+  loginShellInit = "
+  # Set favorite apps at startup
+  dconf reset /org/gnome/shell/favorite-apps  
+  ";
   syntaxHighlighting.enable = true;
   histFile = "$HOME/.histfile";
   histSize = 10000;
