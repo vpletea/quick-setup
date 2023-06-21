@@ -63,11 +63,11 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
     
-  # Setting favorite apps in gnome
+  # Setting favorite apps in gnome and enable dash to dock extension
   services.xserver.desktopManager.gnome = {
     extraGSettingsOverrides = ''
       [org.gnome.shell]
-      favorite-apps=['org.gnome.Terminal.desktop', 'firefox.desktop', 'code.desktop', 'org.gnome.Nautilus.desktop']
+      favorite-apps=['firefox.desktop', 'code.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop']
       enabled-extensions=['dock-from-dash@fthx']
     '';
     extraGSettingsOverridePackages = [
@@ -195,8 +195,10 @@
   bindkey "$terminfo[kcud1]" history-beginning-search-forward-end
   '';
   loginShellInit = "
-  # Set favorite apps at startup
+  #Set favorite apps in dock according to the config file
   dconf reset /org/gnome/shell/favorite-apps
+
+  #Set extensions according to the config file
   dconf reset /org/gnome/shell/enabled-extensions 
   ";
   syntaxHighlighting.enable = true;
