@@ -68,6 +68,7 @@
     extraGSettingsOverrides = ''
       [org.gnome.shell]
       favorite-apps=['org.gnome.Terminal.desktop', 'firefox.desktop', 'code.desktop', 'org.gnome.Nautilus.desktop']
+      enabled-extensions=['dock-from-dash@fthx']
     '';
     extraGSettingsOverridePackages = [
       pkgs.gnome.gnome-shell
@@ -195,7 +196,8 @@
   '';
   loginShellInit = "
   # Set favorite apps at startup
-  dconf reset /org/gnome/shell/favorite-apps  
+  dconf reset /org/gnome/shell/favorite-apps
+  dconf reset /org/gnome/shell/enabled-extensions 
   ";
   syntaxHighlighting.enable = true;
   histFile = "$HOME/.histfile";
