@@ -212,7 +212,6 @@
     ll = "ls -alh";
     ls = "ls --color=auto --group-directories-first";
     grep = "grep -n --color";
-    nano = "nano -c";
     kc = "k3d cluster create -p 80:80@loadbalancer -p 443:443@loadbalancer";
     kd = "k3d cluster delete";
     nr = "sudo nixos-rebuild switch";
@@ -260,4 +259,3 @@
     DefaultTimeoutStopSec=10s
   '';
 }
-
