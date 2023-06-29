@@ -73,7 +73,6 @@
     extraGSettingsOverrides = ''
       [org.gnome.shell]
       favorite-apps=['firefox.desktop', 'code.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop']
-      enabled-extensions=['dock-from-dash@fthx', 'pop-shell@system76.com']
     '';
     extraGSettingsOverridePackages = [
       pkgs.gnome.gnome-shell
@@ -135,14 +134,14 @@
     firefox
     git
     gnome.gnome-terminal
-    gnomeExtensions.dock-from-dash
-    gnomeExtensions.pop-shell
+    gnomeExtensions.dash-to-dock
     google-chrome
     htop
     k3d
     kubectl
     kubernetes-helm
     plymouth
+    powertop
     terraform
     vim
     vlc
@@ -259,3 +258,4 @@
     DefaultTimeoutStopSec=10s
   '';
 }
+
