@@ -131,7 +131,6 @@
     firefox
     git
     gnome.gnome-terminal
-    gnomeExtensions.appindicator
     gnomeExtensions.dash-to-dock
     google-chrome
     htop
@@ -198,10 +197,9 @@
   bindkey "$terminfo[kcud1]" history-beginning-search-forward-end
   '';
   loginShellInit = "
-  #Set favorite apps in dock and enable dash-to-dock
+  #Set favorite apps in dock and enable extensions
   dconf reset /org/gnome/shell/favorite-apps
   gnome-extensions enable dash-to-dock@micxgx.gmail.com
-  gnome-extensions enable  appindicatorsupport@rgcjonas.gmail.com
   ";
   syntaxHighlighting.enable = true;
   histFile = "$HOME/.histfile";
@@ -246,6 +244,22 @@
   # Or disable the firewall altogether.
   networking.firewall.enable = true;
 
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
+  system = {
+    autoUpgrade = {
+      enable = true;
+      dates = "weekly";
+    };
+  };
+
+
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -253,7 +267,6 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-  system.autoUpgrade.enable = true;
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
   '';
