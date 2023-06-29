@@ -131,6 +131,7 @@
     firefox
     git
     gnome.gnome-terminal
+    gnomeExtensions.appindicator
     gnomeExtensions.dash-to-dock
     google-chrome
     htop
@@ -200,6 +201,7 @@
   #Set favorite apps in dock and enable dash-to-dock
   dconf reset /org/gnome/shell/favorite-apps
   gnome-extensions enable dash-to-dock@micxgx.gmail.com
+  gnome-extensions enable  appindicatorsupport@rgcjonas.gmail.com
   ";
   syntaxHighlighting.enable = true;
   histFile = "$HOME/.histfile";
