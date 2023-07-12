@@ -127,6 +127,7 @@
   environment.systemPackages = with pkgs; [
     ansible
     bitwarden
+    bottles
     docker
     firefox
     git
@@ -138,12 +139,12 @@
     kubectl
     kubernetes-helm
     plymouth
-    powertop
     terraform
     vim
     vlc
     vscode
     wget
+    wine
     yubioath-flutter
   ];
 
@@ -164,6 +165,7 @@
       gnome.gnome-contacts
       gnome.gnome-maps
       gnome.gnome-music
+      gnome.gnome-power-manager
       gnome.hitori
       gnome.iagno
       gnome.seahorse
@@ -257,6 +259,27 @@
     };
   };
 
+  # Power settings
+  services.thermald.enable = true;
+  services.power-profiles-daemon.enable = false;
+  services.tlp = {
+        enable = true;
+        settings = {
+          CPU_SCALING_GOVERNOR_ON_AC = "performance";
+          CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+          PLATFORM_PROFILE_ON_AC = "performance";
+          PLATFORM_PROFILE_ON_BAT = "low-power";
+
+          CPU_MIN_PERF_ON_AC = 0;
+          CPU_MAX_PERF_ON_AC = 100;
+          CPU_MIN_PERF_ON_BAT = 0;
+          CPU_MAX_PERF_ON_BAT = 35;
+
+          CPU_BOOST_ON_BAT = "0";
+
+        };
+  };
 
 
   # This value determines the NixOS release from which the default
